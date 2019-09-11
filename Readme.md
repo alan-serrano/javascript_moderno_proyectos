@@ -16,7 +16,7 @@ Proyectos realizados a partir del curso en UDEMY https://www.udemy.com/javascrip
 - El carrito cargará la información almacenada de Local Storage por si el usuario visita el sitio nuevamente.
 - Al quitar un curso del carrito se quita de Local Storage.
 
-# Email
+## Email
 
 Simulación de envío de Emails, proyecto para el manejo del DOM.
 
@@ -24,3 +24,12 @@ Simulación de envío de Emails, proyecto para el manejo del DOM.
 - Debe existir un botón para borrar todo el contenido del formulario.
 - Al presionar el botón enviar, un spinner de carga deberá mostrarse.
 - Después del Spinner, un gráfico de enviado deberá mostrarse.
+
+## Cotiza Seguro
+
+Cotizador de seguro de automóviles, utilizando *prototypes* y *classes*
+
+- Existen 3 modelos, cada uno con precios distintos.
+- Cada año del auto su precio deberá ser menos en un 3%.
+- El seguro del auto "Completo" y "Básico" tien distintos precios.
+- Deberá ser realizado con *Prototypes* y migrado a *Classes*
