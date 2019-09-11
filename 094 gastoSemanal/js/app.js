@@ -7,7 +7,7 @@ var cantidadPresupuesto;
 class Presupuesto{
     constructor(presupuesto){
         this.presupuesto = Number(presupuesto);
-        this.restante = Number(presupuesto);
+        this.restante = this.presupuesto;
     }
 
     presupuestoRestante(cantidad = 0){
@@ -17,8 +17,14 @@ class Presupuesto{
 //Maneja todo lo relacionado a el HTML
 class Interfaz{
     insertarPresupuesto(cantidad){
-        
+        const totalSpan = document.querySelector('span#total');
+        const restanteSpan = document.querySelector('span#restante');
+
+        //Insertar al HTML
+        totalSpan.innerHTML = `${cantidad}`;
+        restanteSpan.innerHTML = `${cantidad}`;
     }
+
 }
 
 // Event listeners
@@ -27,11 +33,11 @@ document.addEventListener('DOMContentLoaded', function inicioDom() {
     if(!presupuestoUsuario){
         window.location.reload();
     }else{
-        //Instanciar un prespuesto
-        cantidadPresupuesto = new Presupuesto(presupuestoUsuario);
+        //Instanciar un presupuesto
+        presupuesto = new Presupuesto(presupuestoUsuario);
 
         //Instanciar la Interfaz
         const ui = new Interfaz;
-        ui.insertarPresupuesto(cantidadPresupuesto.presupuesto);
+        ui.insertarPresupuesto(presupuesto.presupuesto);
     }
 })
