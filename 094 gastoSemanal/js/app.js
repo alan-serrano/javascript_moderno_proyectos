@@ -3,8 +3,6 @@ const presupuestoUsuario = prompt('¿Cuál es tu presupuesto semanal?');
 const formulario = document.getElementById('agregar-gasto');
 var cantidadPresupuesto;
 
-//Instanciar la Interfaz
-const ui = new Interfaz;
 
 //Clases
 class Presupuesto{
@@ -81,11 +79,31 @@ class Interfaz{
         //Insertando HTML
         restanteEl.innerHTML = presupuestoRestanteUsuario;
 
+        this.comprobarPresupuesto.call(cantidadPresupuesto);
+    }
+
+    //Cambia de color el presupuesto restante
+    comprobarPresupuesto(){
+        const presupuestoTotal = cantidadPresupuesto.presupuesto;
+        const presupuestoRestante = cantidadPresupuesto.restante;
+        const porcentajeGastado = (presupuestoTotal - presupuestoRestante)/presupuestoTotal;
+        const restanteEl = document.getElementById('restante').parentElement.parentElement 
+
+        //Elimando las clases
+        restanteEl.classList.remove('alert-success', 'alert-warning', 'alert-danger');
+
+        //Añadiendo las clases de acuerdo al porcentaje gastado
+        if(porcentajeGastado > .75) restanteEl.classList.add('alert-danger');
+        else if(porcentajeGastado > .50) restanteEl.classList.add('alert-warning');
+        else restanteEl.classList.add('alert-success');
     }
 
 }
 
 // Event listeners
+
+//Instanciar la Interfaz
+const ui = new Interfaz;
 
 document.addEventListener('DOMContentLoaded', function inicioDom() {
     if(!presupuestoUsuario){
