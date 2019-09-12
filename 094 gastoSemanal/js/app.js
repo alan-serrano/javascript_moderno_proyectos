@@ -1,5 +1,6 @@
 // Variables
 const presupuestoUsuario = prompt('¿Cuál es tu presupuesto semanal?');
+const formulario = document.getElementById('agregar-gasto');
 var cantidadPresupuesto;
 
 
@@ -25,9 +26,36 @@ class Interfaz{
         restanteSpan.innerHTML = `${cantidad}`;
     }
 
+    imprimirMensaje(mensaje, tipo){
+        //Creando mensaje
+        const divMensaje = document.createElement('div');
+        divMensaje.classList.add('text-center', 'alert');
+        if(tipo === 'error'){
+            divMensaje.classList.add('alert-danger');
+        }else{
+            divMensaje.classList.add('alert-success');
+        }
+
+        divMensaje.appendChild(document.createTextNode(mensaje));
+
+        //Insertando mensaje
+
+        document.querySelector(".primario").insertBefore(divMensaje, formulario);
+
+
+        //Quitar mensaje luego de 3 segundos
+        setTimeout(function quitarMensaje() {
+            divMensaje.remove();
+            formulario.reset();
+        }, 3000);
+    }
+
 }
 
 // Event listeners
+
+//Instanciar la Interfaz
+const ui = new Interfaz;
 
 document.addEventListener('DOMContentLoaded', function inicioDom() {
     if(!presupuestoUsuario){
@@ -35,9 +63,22 @@ document.addEventListener('DOMContentLoaded', function inicioDom() {
     }else{
         //Instanciar un presupuesto
         presupuesto = new Presupuesto(presupuestoUsuario);
-
-        //Instanciar la Interfaz
-        const ui = new Interfaz;
         ui.insertarPresupuesto(presupuesto.presupuesto);
     }
-})
+});
+
+formulario.addEventListener('submit', function submitAction(e) {
+    e.preventDefault();
+
+    //Leer el formulario
+    const nombreGasto = document.getElementById('gasto').value;
+    const gasto = document.getElementById('cantidad').value;
+
+    //Comprobar que los campos no estén vacíos
+    if(!nombreGasto || !gasto){
+        // 2 parámetros: mensaje y tipo
+        ui.imprimirMensaje('Hubo un error', 'error');
+    }else{
+
+    }
+});
