@@ -3,6 +3,8 @@ const presupuestoUsuario = prompt('¿Cuál es tu presupuesto semanal?');
 const formulario = document.getElementById('agregar-gasto');
 var cantidadPresupuesto;
 
+//Instanciar la Interfaz
+const ui = new Interfaz;
 
 //Clases
 class Presupuesto{
@@ -30,6 +32,7 @@ class Interfaz{
         //Creando mensaje
         const divMensaje = document.createElement('div');
         divMensaje.classList.add('text-center', 'alert');
+
         if(tipo === 'error'){
             divMensaje.classList.add('alert-danger');
         }else{
@@ -50,20 +53,47 @@ class Interfaz{
         }, 3000);
     }
 
+    //Inserta los gastos a la lista
+    agregarGastoListado(nombre, cantidad){
+        const gastosListado = document.querySelector('#gastos ul');
+
+        //Crear un li
+        const li = document.createElement('li');
+        li.className = 'list-group-item d-flex justify-content-between align-items-center';
+
+        //Insertar el gasto
+        li.innerHTML = `
+            ${nombre}
+            <span class="badge badge-primary badge-pill">$ ${cantidad}</span>
+        `
+
+        //Insertar al HTML
+        gastosListado.appendChild(li);
+    }
+
+    //Comprueba el presupuesto restante
+    presupuestoRestante(cantidad){
+        const restanteEl = document.querySelector('span#restante');
+
+        //Leemos el presupuesto restante
+        const presupuestoRestanteUsuario = cantidadPresupuesto.presupuestoRestante(cantidad);
+
+        //Insertando HTML
+        restanteEl.innerHTML = presupuestoRestanteUsuario;
+
+    }
+
 }
 
 // Event listeners
-
-//Instanciar la Interfaz
-const ui = new Interfaz;
 
 document.addEventListener('DOMContentLoaded', function inicioDom() {
     if(!presupuestoUsuario){
         window.location.reload();
     }else{
         //Instanciar un presupuesto
-        presupuesto = new Presupuesto(presupuestoUsuario);
-        ui.insertarPresupuesto(presupuesto.presupuesto);
+        cantidadPresupuesto = new Presupuesto(presupuestoUsuario);
+        ui.insertarPresupuesto(cantidadPresupuesto.presupuesto);
     }
 });
 
@@ -72,13 +102,16 @@ formulario.addEventListener('submit', function submitAction(e) {
 
     //Leer el formulario
     const nombreGasto = document.getElementById('gasto').value;
-    const gasto = document.getElementById('cantidad').value;
+    const cantidadGasto = document.getElementById('cantidad').value;
 
     //Comprobar que los campos no estén vacíos
-    if(!nombreGasto || !gasto){
+    if(!nombreGasto || !cantidadGasto){
         // 2 parámetros: mensaje y tipo
         ui.imprimirMensaje('Hubo un error', 'error');
     }else{
-
+        // Insertar en el HTML
+        ui.imprimirMensaje('Correcto', 'correcto');
+        ui.agregarGastoListado(nombreGasto, cantidadGasto);
+        ui.presupuestoRestante(cantidadGasto);
     }
 });
