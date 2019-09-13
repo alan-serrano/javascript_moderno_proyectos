@@ -43,3 +43,7 @@ Proyecto desarrollado con clases.
 - Crear un listado de gastos e ir reduciendo la cantidad de presupuesto disponible
 - Una vez gastado el 50% mostrar el restante en color amarillo.
 - Una vez gastado el 75% mostrar el restante en color rojo.
+
+## 100 y 101 AJAX
+
+Ejemplos para utilizar AJAX
