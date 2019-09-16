@@ -47,3 +47,12 @@ Proyecto desarrollado con clases.
 ## Ejemplos de AJAX
 
 Ejemplos para utilizar AJAX
+
+## Generador de nombres
+
+Generador de nombres consumiendo la API https://github.com/thm/uinames
+
+- Consumir los datos desde una REST API
+- Enviar parámatros a la REST API para filtrar país, sexo y cantidad de nombres.
+- Imprimir los resultados desde la REST API, con FETCH API, AJAX y ASYNC/AWAIT
+- Deberá ser realizado con clases
