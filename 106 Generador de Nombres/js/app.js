@@ -27,7 +27,35 @@ function cargarNombres(e) {
     // Si hay una cantidad agregarlo a la URL
     if(nombresAGenerar)  url += `amount=${nombresAGenerar}&`;
 
+    /* Conectar con Ajax */
 
-    console.log(url);
+    const xhr = new XMLHttpRequest;
+
+    xhr.open('GET', url, true);
+
+    xhr.onload = function funcionXHR() {
+        if(this.status === 200){
+            const nombres = JSON.parse(this.responseText);
+            const resultadoEl = document.getElementById('resultado');
+            resultadoEl.innerHTML = '';
+
+            //Generar el HTML
+            let htmlNombres = `<h2> Nombres Generados</h2>`;
+
+            htmlNombres += '<ul class="lista">';
+
+            nombres.forEach(function añadirNombres(persona) {
+                htmlNombres += `
+                    <li>${persona.name}</li>
+                `
+            })
+
+            htmlNombres += `</ul>`
+
+            resultadoEl.innerHTML = htmlNombres;
+        }
+    }
+
+    xhr.send();
 
 }
