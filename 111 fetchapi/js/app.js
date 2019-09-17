@@ -1,4 +1,5 @@
 document.getElementById('txtBtn').addEventListener('click', cargarTXT);
+document.getElementById('jsonBtn').addEventListener('click', cargarJSON);
 
 
 function cargarTXT() {
@@ -13,4 +14,24 @@ function cargarTXT() {
         .catch(function (err) {
             console.log(err);
         });
+}
+
+function cargarJSON() {
+    fetch('empleados.json')
+        .then(function (res) {
+            return res.json();
+        })
+        .then(function (empleados) {
+            let html = '';
+            empleados.forEach(empleado => {
+                html += `
+                    <li>${empleado.nombre}: ${empleado.puesto}</li>
+                    
+                `;
+            });
+            document.getElementById('resultado').innerHTML = html;
+        })
+        .catch(function (error) {
+            console.log(error);
+        })
 }
