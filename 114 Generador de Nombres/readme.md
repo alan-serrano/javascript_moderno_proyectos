@@ -1,4 +1,4 @@
-# Generador de nombres con AJAX y REST API
+# Generador de nombres con FETCH API y REST API
 
 Consumo de la API https://github.com/thm/uinames
 

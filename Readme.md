@@ -50,7 +50,7 @@ Ejemplos para utilizar AJAX
 
 ## Generador de nombres
 
-Generador de nombres consumiendo la API https://github.com/thm/uinames
+Generador de nombres consumiendo la API https://github.com/thm/uinames con AJAX
 
 - Consumir los datos desde una REST API
 - Enviar parámatros a la REST API para filtrar país, sexo y cantidad de nombres.
@@ -59,3 +59,7 @@ Generador de nombres consumiendo la API https://github.com/thm/uinames
 
 ## Fetch API
 Ejercicios de AJAX anteriores hechos con fetch API
+
+## Generador de nombres con Fetch API
+
+Mismo proyecto "Generador de nombres", ahora ocupando la FETCH API.
