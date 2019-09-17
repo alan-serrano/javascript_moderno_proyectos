@@ -27,15 +27,13 @@ function cargarNombres(e) {
     // Si hay una cantidad agregarlo a la URL
     if(nombresAGenerar)  url += `amount=${nombresAGenerar}&`;
 
-    /* Conectar con Ajax */
+    /* Conectar con Fetch */
 
-    const xhr = new XMLHttpRequest;
-
-    xhr.open('GET', url, true);
-
-    xhr.onload = function funcionXHR() {
-        if(this.status === 200){
-            const nombres = JSON.parse(this.responseText);
+    fetch(url)
+        .then(function (res) {
+            return res.json();
+        })
+        .then(function (nombres) {
             const resultadoEl = document.getElementById('resultado');
             resultadoEl.innerHTML = '';
 
@@ -53,9 +51,8 @@ function cargarNombres(e) {
             htmlNombres += `</ul>`
 
             resultadoEl.innerHTML = htmlNombres;
-        }
-    }
-
-    xhr.send();
-
+        })
+        .catch(function (error) {
+            console.log(error);
+        });
 }
