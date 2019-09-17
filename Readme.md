@@ -56,3 +56,6 @@ Generador de nombres consumiendo la API https://github.com/thm/uinames
 - Enviar parámatros a la REST API para filtrar país, sexo y cantidad de nombres.
 - Imprimir los resultados desde la REST API, con FETCH API, AJAX y ASYNC/AWAIT
 - Deberá ser realizado con clases
+
+## Fetch API
+Ejercicios de AJAX anteriores hechos con fetch API
